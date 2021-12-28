@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class name="Scale" inherits="Control" version="3.4">
 	<brief_description>
-    A custom node made to extend the Control node with relative scaling features.
+		A custom node made to extend the Control node with relative scaling features.
 	</brief_description>
 	<description>
-    A custom node made to extend the Control node with relative scaling features.
+		A custom node made to extend the Control node with relative scaling features.
 	</description>
 	<tutorials>
 	</tutorials>
