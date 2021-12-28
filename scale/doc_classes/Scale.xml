@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="Scale" inherits="Control" version="3.4">
+	<brief_description>
+    A custom node made to extend the Control node with relative scaling features.
+	</brief_description>
+	<description>
+    A custom node made to extend the Control node with relative scaling features.
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="resize_scale">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="offset_pos" type="Vector2" setter="set_offset_pos" getter="get_offset_pos" default="Vector2( 0, 0 )">
+		</member>
+		<member name="offset_size" type="Vector2" setter="set_offset_size" getter="get_offset_size" default="Vector2( 40, 40 )">
+		</member>
+		<member name="relative_pos" type="Vector2" setter="set_relative_pos" getter="get_relative_pos" default="Vector2( 0, 0 )">
+		</member>
+		<member name="relative_size" type="Vector2" setter="set_relative_size" getter="get_relative_size" default="Vector2( 0, 0 )">
+		</member>
+	</members>
+	<constants>
+	</constants>
+</class>
