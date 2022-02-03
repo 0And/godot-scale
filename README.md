@@ -8,4 +8,4 @@ This repository features both a C++ module version and a GDScript plugin version
 - Offset GUI sizing
 - Relative scalar positioning
 - Offset GUI positioning
-- Axis-specific Relative Constraints
+- Axis-specific relative constraints
