@@ -6,12 +6,21 @@
 
 class Scale : public Control {
 	GDCLASS(Scale, Control);
+	
+	public:
+		enum RelativeConstraint {
+			RELATIVE_XY,
+			RELATIVE_XX,
+			RELATIVE_YY,
+			RELATIVE_YX,
+		};
 
 	private:
 		Vector2 relative_size;
 		Vector2 offset_size;
 		Vector2 relative_pos;
 		Vector2 offset_pos;
+		RelativeConstraint relative_constraint;
 		
 		void resize_scale();
 
@@ -34,10 +43,15 @@ class Scale : public Control {
 		
 		void set_offset_pos(const Vector2 &p_offset_pos);
 		Vector2 get_offset_pos() const;
+
+		void set_relative_constraint(RelativeConstraint p_relative_constraint);
+		RelativeConstraint get_relative_constraint() const;
 		
 		Scale();
 		~Scale();
 
 };
+
+VARIANT_ENUM_CAST(Scale::RelativeConstraint);
 
 #endif // SCALE_H

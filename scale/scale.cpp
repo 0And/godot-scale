@@ -15,6 +15,22 @@ void Scale::resize_scale() {
 			size = viewport->get_size();
 		}
 	}
+	switch (relative_constraint) {
+		case RELATIVE_XY: {
+			// Do nothing.
+		} break;
+		case RELATIVE_XX: {
+			size.y = size.x;
+		} break;
+		case RELATIVE_YY: {
+			size.x = size.y;
+		} break;
+		case RELATIVE_YX: {
+			float size_x = size.x;
+			size.x = size.y;
+			size.y = size_x;
+		} break;
+	}
 
 	set_position((relative_pos * size) + offset_pos);
 	set_size((relative_size * size) + offset_size);
@@ -65,6 +81,15 @@ Vector2 Scale::get_offset_pos() const {
 	return offset_pos;
 }
 
+void Scale::set_relative_constraint(const RelativeConstraint p_relative_constraint) {
+	ERR_FAIL_INDEX((int)p_relative_constraint, 4);
+	relative_constraint = p_relative_constraint;
+	resize_scale();
+}
+Scale::RelativeConstraint Scale::get_relative_constraint() const {
+	return relative_constraint;
+}
+
 void Scale::_notification(int p_notification) {
 	switch (p_notification) {
 		case NOTIFICATION_ENTER_TREE: {
@@ -103,10 +128,19 @@ void Scale::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_offset_pos", "offset_pos"), &Scale::set_offset_pos);
 	ClassDB::bind_method(D_METHOD("get_offset_pos"), &Scale::get_offset_pos);
 
+	ClassDB::bind_method(D_METHOD("set_relative_constraint", "relative_constraint"), &Scale::set_relative_constraint);
+	ClassDB::bind_method(D_METHOD("get_relative_constraint"), &Scale::get_relative_constraint);
+
+	BIND_ENUM_CONSTANT(RELATIVE_XY);
+	BIND_ENUM_CONSTANT(RELATIVE_XX);
+	BIND_ENUM_CONSTANT(RELATIVE_YY);
+	BIND_ENUM_CONSTANT(RELATIVE_YX);
+
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "relative_size"), "set_relative_size", "get_relative_size");
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "offset_size"), "set_offset_size", "get_offset_size");
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "relative_pos"), "set_relative_pos", "get_relative_pos");
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "offset_pos"), "set_offset_pos", "get_offset_pos");
+	ADD_PROPERTY(PropertyInfo(Variant::INT, "relative_constraint", PROPERTY_HINT_ENUM, "XY,XX,YY,YX"), "set_relative_constraint", "get_relative_constraint");
 }
 
 Scale::Scale() {
@@ -114,6 +148,7 @@ Scale::Scale() {
 	offset_size = Vector2(40, 40);
 	relative_pos = Vector2(0, 0);
 	offset_pos = Vector2(0, 0);
+	relative_constraint = RELATIVE_XY;
 }
 
 Scale::~Scale() {
