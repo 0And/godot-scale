@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <class name="Scale" inherits="Control" version="3.4">
 	<brief_description>
-		A custom node made to extend the Control node with relative scaling features.
+		A custom node made to extend the Control node with relative, axis-specific scaling and offset features.
 	</brief_description>
 	<description>
-		A custom node made to extend the Control node with relative scaling features.
+		A custom node made to extend the Control node with relative, axis-specific scaling and offset features.
 	</description>
 	<tutorials>
 	</tutorials>
@@ -12,19 +12,39 @@
 		<method name="resize_scale">
 			<return type="void" />
 			<description>
+				Returns void. Resizes the node to fit the correct size, position, and axis constraints.
 			</description>
 		</method>
 	</methods>
 	<members>
 		<member name="offset_pos" type="Vector2" setter="set_offset_pos" getter="get_offset_pos" default="Vector2( 0, 0 )">
+			Controls the node's offset position.
 		</member>
 		<member name="offset_size" type="Vector2" setter="set_offset_size" getter="get_offset_size" default="Vector2( 40, 40 )">
+			Controls the node's offset size.
 		</member>
 		<member name="relative_pos" type="Vector2" setter="set_relative_pos" getter="get_relative_pos" default="Vector2( 0, 0 )">
+			Controls the node's relative position.
 		</member>
 		<member name="relative_size" type="Vector2" setter="set_relative_size" getter="get_relative_size" default="Vector2( 0, 0 )">
+			Controls the node's relative size.
+		</member>
+		<member name="relative_constraint" type="int" setter="set_relative_constraint" getter="get_relative_constraint" enum="Scale.RelativeConstraint" default="0">
+			Controls the node's relative axis constraints.
 		</member>
 	</members>
 	<constants>
+		<constant name="RELATIVE_XY" value="0" enum="RelativeConstraint">
+			Constrains the XY axes to the parent's XY axes respectively (default).
+		</constant>
+		<constant name="RELATIVE_XX" value="1" enum="RelativeConstraint">
+			Constrains the XY axes to the parent's X axis.
+		</constant>
+		<constant name="RELATIVE_YY" value="2" enum="RelativeConstraint">
+			Constrains the XY axes to the parent's Y axis.
+		</constant>
+		<constant name="RELATIVE_YX" value="3" enum="RelativeConstraint">
+			Constrains the XY axes to the parent's YX axes respectively.
+		</constant>
 	</constants>
 </class>
